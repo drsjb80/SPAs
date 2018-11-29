@@ -34,18 +34,15 @@ var ItemsVue = new Vue({
     data: { students: [],
         students_selected: true,
         advisors: [] },
-    methods: {
-        populate: function() {
-            axios.get('http://localhost:3000/students.json')
-                .then(response => { this.students = response.data })
-                .catch(error => { console.log(error); });
-            axios.get('http://localhost:3000/advisors.json')
-                .then(response => { this.advisors = response.data })
-                .catch(error => { console.log(error); });
-        }
+    mounted: function() {
+        axios.get('http://localhost:3000/students.json')
+            .then(response => { this.students = response.data })
+            .catch(error => { console.log(error); });
+        axios.get('http://localhost:3000/advisors.json')
+            .then(response => { this.advisors = response.data })
+            .catch(error => { console.log(error); });
     }
 });
-ItemsVue.populate();
 </script>
 
 </body>
