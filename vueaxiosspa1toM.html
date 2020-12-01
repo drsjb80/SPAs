@@ -7,32 +7,36 @@
 <body>
 
 <div id="Itemlist">
-    <button v-on:click="students_selected=false">advisors</button>
-    <button v-on:click="students_selected=true">students</button>
-    <ul>
-    <span v-if="students_selected">
+    <button v-on:click="choice=1">advisors</button>
+    <button v-on:click="choice=2">students</button>
+    <span v-if="choice === 1">
+        <ul>
         <div v-for="student in students">
-            <li>{{student.name}}, {{advisors[student.advisor_id].name}}</li>
+            <li>{{student.name}}, {{advisors[student.advisor_id-1].name}}</li>
         </div>
+        </ul>
     </span>
-    <span v-else>
+    <span v-else-if="choice === 2">
+        <ul>
         <div v-for="advisor in advisors">
             <li>{{advisor.name}}</li>
+            <!-- might be cleaner to filter... -->
             <div v-for="student in students">
                 <span v-if="student.advisor_id === advisor.id">
                     {{ student.name }}
                 </span>
             </div>
         </div>
+        </ul>
     </span>
-    </ul>
+    <span v-else>Nothing selected</span>
 </div>
 
 <script type="text/javascript">
 var ItemsVue = new Vue({
     el: '#Itemlist',
     data: { students: [],
-        students_selected: true,
+        choice: 1,
         advisors: [] },
     mounted: function() {
         axios.get('http://localhost:3000/students.json')
