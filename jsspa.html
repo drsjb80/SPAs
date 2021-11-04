@@ -11,16 +11,16 @@
 </div>
 
 <script>
-var l = document.getElementById("list");
+let l = document.getElementById("list");
 
-var clear = function() {
+let clear = function() {
     while (l.firstChild) {
         l.removeChild(l.firstChild);
     }
 };
 
-var http_request = new XMLHttpRequest();
-var fetch = function(which, fields) {
+let http_request = new XMLHttpRequest();
+let fetch = function(which, fields) {
     http_request.open("GET", "http://localhost:3000/" + which + ".json", true);
     http_request.onreadystatechange = function () {
         let done = 4, ok = 200;

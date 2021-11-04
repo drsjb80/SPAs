@@ -7,8 +7,8 @@
 <body>
 
 <div id="Itemlist">
-    <button v-on:click="choice=1">advisors</button>
-    <button v-on:click="choice=2">students</button>
+    <button v-on:click="choice=1">students</button>
+    <button v-on:click="choice=2">advisors</button>
     <span v-if="choice === 1">
         <ul>
         <div v-for="student in students">
@@ -33,7 +33,7 @@
 </div>
 
 <script type="text/javascript">
-var ItemsVue = new Vue({
+let ItemsVue = new Vue({
     el: '#Itemlist',
     data: { students: [],
         choice: 1,
